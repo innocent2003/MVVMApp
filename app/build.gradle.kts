@@ -43,14 +43,14 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
 //
-//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
 //
 //    // Room
-//    implementation "androidx.room:room-runtime:2.2.5"
+    implementation ("androidx.room:room-runtime:2.2.5")
 //    kapt "androidx.room:room-compiler:2.2.5"
 //
 //    // Kotlin Extensions and Coroutines support for Room
-//    implementation "androidx.room:room-ktx:2.2.5"
+    implementation ("androidx.room:room-ktx:2.2.5")
 //
 //    // Coroutines
 //    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5'
@@ -61,9 +61,9 @@ dependencies {
 //    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
 //
 //    // Retrofit
-//    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
-//    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
-//    implementation "com.squareup.okhttp3:logging-interceptor:4.5.0"
+    implementation ("com.squareup.retrofit2:retrofit:2.6.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.6.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.5.0")
 //
 //    // Navigation Components
 //    implementation "androidx.navigation:navigation-fragment-ktx:2.2.1"
