@@ -1,4 +1,4 @@
-package com.example.testmvvm12.fragments
+package com.example.testmvvm12.ui.fragments
 
 import androidx.fragment.app.Fragment
 import com.example.testmvvm12.R
