@@ -8,10 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.testmvvm12.R
 import com.example.testmvvm12.models.Article
-import kotlinx.android.synthetic.main.item_article_preview.view.*
+
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
-    inner class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val articleImage = itemView.findViewById<android.widget.ImageView>(R.id.ivArticleImage)
+        val source = itemView.findViewById<android.widget.TextView>(R.id.tvSource)
+        val title = itemView.findViewById<android.widget.TextView>(R.id.tvTitle)
+        val description = itemView.findViewById<android.widget.TextView>(R.id.tvDescription)
+        val publishedAt = itemView.findViewById<android.widget.TextView>(R.id.tvPublishedAt)
+    }
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -43,16 +49,18 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
-        holder.itemView.apply {
-            Glide.with(this).load(article.urlToImage).into(ivArticleImage)
-            tvSource.text = article.source?.name
-            tvTitle.text = article.title
-            tvDescription.text = article.description
-            tvPublishedAt.text = article.publishedAt
+        Glide.with(holder.itemView)
+            .load(article.urlToImage)
+            .placeholder(R.drawable.ic_launcher_foreground)
+            .error(R.drawable.ic_launcher_foreground)
+            .into(holder.articleImage)
+        holder.source.text = article.source?.name.orEmpty()
+        holder.title.text = article.title.orEmpty()
+        holder.description.text = article.description.orEmpty()
+        holder.publishedAt.text = article.publishedAt.orEmpty()
 
-            setOnClickListener {
-                onItemClickListener?.let { it(article) }
-            }
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.invoke(article)
         }
     }
 

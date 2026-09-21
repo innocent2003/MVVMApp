@@ -2,29 +2,34 @@ package com.example.testmvvm12.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.example.testmvvm12.R
+import com.example.testmvvm12.models.Article
 import com.example.testmvvm12.ui.NewsActivity
-import com.example.testmvvm12.ui.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_article.*
 
 class ArticleFragment : Fragment(R.layout.fragment_article) {
 
-    lateinit var viewModel: NewsViewModel
-    val args: ArticleFragmentArgs by navArgs()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as NewsActivity).viewModel
-        val article = args.article
-        webView.apply {
+
+        val article = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            requireArguments().getSerializable("article", Article::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            requireArguments().getSerializable("article") as? Article
+        } ?: return
+
+        view.findViewById<WebView>(R.id.webView).apply {
             webViewClient = WebViewClient()
-            loadUrl(article.url)
+            article.url?.let(::loadUrl)
         }
 
-        fab.setOnClickListener {
-            viewModel.saveArticle(article)
+        view.findViewById<com.google.android.material.floatingactionbutton.FloatingActionButton>(R.id.fab)
+            .setOnClickListener {
+            (requireActivity() as NewsActivity).viewModel.saveArticle(article)
             Snackbar.make(view, "Article saved successfully", Snackbar.LENGTH_SHORT).show()
         }
     }
