@@ -1,13 +1,9 @@
-package com.example.testmvvm12
+package com.example.testmvvm12.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
-//import com.example.testmvvm12.db.ArticleDatabase
-//import com.example.testmvvm12.repository.NewsRepository
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.testmvvm12.R
+
 class NewsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
