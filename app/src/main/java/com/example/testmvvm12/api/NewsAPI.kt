@@ -1,6 +1,6 @@
 package com.example.testmvvm12.api
 
-import com.example.testmvvm12.NewsResponse
+import com.example.testmvvm12.models.NewsResponse
 import com.example.testmvvm12.util.Constants
 import retrofit2.Response
 import retrofit2.http.GET

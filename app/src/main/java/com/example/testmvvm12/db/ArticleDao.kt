@@ -2,7 +2,7 @@ package com.example.testmvvm12.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.testmvvm12.Article
+import com.example.testmvvm12.models.Article
 
 
 @Dao

@@ -1,6 +1,4 @@
-package com.example.testmvvm12
-
-import com.google.gson.annotations.SerializedName
+package com.example.testmvvm12.models
 
 data class NewsResponse(
     val articles: List<Article>,
